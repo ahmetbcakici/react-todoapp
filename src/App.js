@@ -1,18 +1,29 @@
+
 import React, { Component } from 'react'
 
 export default class App extends Component {
 
   state = {
     gorev:'',
-    yapilacaklar:['marketten makarna al','matematik odevi yap','defteri elden gecir'],
+    yapilacaklar:[],
   }
 
   isimDegistir = () => {
-    this.setState({isim:'Mehmet'})
+    this.setState({isim:'Mehmet'});
   }
 
   gorevEkle = () => {
-    this.state.yapilacaklar.push(gorev);
+    // this.state.yapilacaklar.push(this.state.gorev); // yanlis yontem
+
+    // 1. yöntem
+/*     let geciciDizi = this.state.yapilacaklar;
+    geciciDizi.push(this.state.gorev);
+    this.setState({yapilacaklar:geciciDizi}) */
+
+    // 2. yöntem spread operatör ile
+    // spread operatör = ...
+    
+    this.setState({yapilacaklar:[...this.state.yapilacaklar,this.state.gorev]})
   }
   
   render() {
@@ -20,7 +31,7 @@ export default class App extends Component {
       <div style={{textAlign:'center'}}>
         <h1>Yapılacaklar Listesi</h1>
         <input type="text" onChange={e => this.setState({gorev:e.target.value})}/>
-        <button onClick={}>Tamam</button>
+        <button onClick={this.gorevEkle}>Tamam</button>
         <ul>
           {/* return'ün döneceği yer */}
           {this.state.yapilacaklar.map(item => <li>{item}</li> )}
