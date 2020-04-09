@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+
+  state = {
+    gorev:'',
+    yapilacaklar:['marketten makarna al','matematik odevi yap','defteri elden gecir'],
+  }
+
+  isimDegistir = () => {
+    this.setState({isim:'Mehmet'})
+  }
+
+  gorevEkle = () => {
+    this.state.yapilacaklar.push(gorev);
+  }
+  
+  render() {
+    return (
+      <div style={{textAlign:'center'}}>
+        <h1>Yapılacaklar Listesi</h1>
+        <input type="text" onChange={e => this.setState({gorev:e.target.value})}/>
+        <button onClick={}>Tamam</button>
+        <ul>
+          {/* return'ün döneceği yer */}
+          {this.state.yapilacaklar.map(item => <li>{item}</li> )}
+        </ul>
+      </div>
+    )
+  }
 }
-
-export default App;
